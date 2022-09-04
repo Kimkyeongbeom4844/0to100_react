@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      "use strict";
+      // class LikeButton extends React.Component {
+      //   state = {
+      //     liked: false,
+      //   };
+      //   onClickEvent = () => this.setState({ liked: true });
+
+      //   render() {
+      //     if (this.state.liked) {
+      //       return "You like it";
+      //     } else {
+      //       return <button onClick={this.onClickEvent}>Like</button>;
+      //     }
+      //   }
+      // }
+
+      //함수컴포넌트를 쓰면 this쓸일이 없다
+      const LikeButton = () => {
+        const [liked, setLiked] = React.useState(false); //구조분해할당
+        if (liked) {
+          return "You like it";
+        }
+        return (
+          <button
+            onClick={() => {
+              setLiked(true);
+            }}
+          >
+            Like
+          </button>
+        );
+      };
+    </script>
+    <script type="text/babel">
+      // React -v.17
+      // ReactDOM.render(
+      //   <div>
+      //     <LikeButton />
+      //     <LikeButton />
+      //     <LikeButton />
+      //   </div>,
+      //   document.querySelector("#root")
+      // );
+
+      //React -v.18
+      ReactDOM.createRoot(document.querySelector("#root")).render(
+        <div>
+          <LikeButton />
+          <LikeButton />
+          <LikeButton />
+        </div>
+      );
+    </script>
+  </body>
+</html>
