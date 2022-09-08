@@ -3,12 +3,12 @@ const path = require("path");
 module.exports = {
   mode: "development",
   entry: {
-    app: "./app.jsx",
+    app: "./index.jsx",
   },
   module: {
     rules: [
       {
-        test: /.jsx?/,
+        test: /.jsx?$/,
         use: [
           {
             loader: "babel-loader",
