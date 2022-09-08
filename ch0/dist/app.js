@@ -19,13 +19,13 @@ eval("function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterable
 
 /***/ }),
 
-/***/ "./app.jsx":
-/*!*****************!*\
-  !*** ./app.jsx ***!
-  \*****************/
+/***/ "./index.jsx":
+/*!*******************!*\
+  !*** ./index.jsx ***!
+  \*******************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("var React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar ReactDOM = __webpack_require__(/*! react-dom/client */ \"./node_modules/react-dom/client.js\");\n\nvar Gugudan = __webpack_require__(/*! ./Gugudan.jsx */ \"./Gugudan.jsx\");\n\nReactDOM.createRoot(document.querySelector(\"#root\")).render( /*#__PURE__*/React.createElement(Gugudan, null));\n\n//# sourceURL=webpack://ch0/./app.jsx?");
+eval("var React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar ReactDOM = __webpack_require__(/*! react-dom/client */ \"./node_modules/react-dom/client.js\");\n\nvar Gugudan = __webpack_require__(/*! ./Gugudan.jsx */ \"./Gugudan.jsx\");\n\nReactDOM.createRoot(document.querySelector(\"#root\")).render( /*#__PURE__*/React.createElement(Gugudan, null));\n\n//# sourceURL=webpack://ch0/./index.jsx?");
 
 /***/ }),
 
@@ -150,7 +150,7 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./app.jsx");
+/******/ 	var __webpack_exports__ = __webpack_require__("./index.jsx");
 /******/ 	
 /******/ })()
 ;
