@@ -28,7 +28,7 @@ const Gugudan = () => {
   return (
     <div>
       <h2>
-        {first}곱하기{second}은
+        {first}곱하기{second}은?
       </h2>
       <form onSubmit={resultCheck}>
         <input
