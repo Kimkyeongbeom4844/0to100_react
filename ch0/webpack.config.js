@@ -29,6 +29,8 @@ module.exports = {
     devMiddleware: {
       publicPath: "/dist/", //웹팩데브서버가 사용하는 가상경로
     },
-    static: path.join(__dirname), //static, index.html가 있는 경로를 표시하면됨
+    static: {
+      directory: path.join(__dirname), //static, index.html가 있는 경로를 표시하면됨
+    },
   },
 };
