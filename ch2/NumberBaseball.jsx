@@ -1,50 +1,66 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
+
+const setNum = () => {
+  let candidate = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  let array = [];
+  for (let i = 0; i < 4; i++) {
+    array.push(candidate.splice(Math.floor(Math.random() * 9 - i), 1).join(""));
+  }
+  return array;
+};
 
 const NumberBaseball = () => {
-  let arr = Array.from(Array(4), () => String(Math.ceil(Math.random() * 9)));
+  const [quiz, setQuiz] = useState(setNum);
   const [result, setResult] = useState("");
-  const [inputValue, setInputValue] = useState("");
-  const [quiz, setQuiz] = useState(arr);
-  const inputDOM = useRef(null);
-  const changeInputValue = (e) => {
-    if (e.currentTarget.value.length <= 4) {
-      setInputValue(e.currentTarget.value);
-    }
-  };
+  const [inputValue, setinputValue] = useState("");
+  const [tries, setTries] = useState([]);
+  const [hint, setHint] = useState(0);
+  const [count, setCount] = useState(0);
+
   console.log(quiz);
-  let strike = 0;
-  let ball = 0;
-  const checkResult = (e) => {
-    e.preventDefault();
-    if (inputValue.length !== 4) {
-      setResult("네 자리 수를 입력하세요");
-    } else {
-      for (let i = 0; i < 4; i++) {
-        if (inputValue.includes(arr[i])) {
-          if (inputValue[i] == arr[i]) {
-            strike++;
-          } else {
-            ball++;
-          }
-        }
-      }
-      setResult(`${strike}스트라이크, ${ball}볼`);
+  const inputValueChange = (e) => {
+    if (e.currentTarget.value.length <= quiz.length) {
+      setinputValue(e.currentTarget.value);
     }
-    inputDOM.current.focus();
-    setInputValue("");
   };
+
+  const resultCheck = (e) => {
+    e.preventDefault();
+    if (inputValue.length === 4) {
+      setCount((v) => v + 1);
+      setTries([...tries, inputValue]);
+      if (inputValue === quiz.join("")) {
+        setResult("홈런");
+        setQuiz(setNum);
+      } else {
+        setResult("");
+        for (let i = 0; i < quiz.length; i++) {}
+      }
+      console.log(count);
+    } else {
+      setResult("");
+      alert("숫자를 4개 입력하세요");
+    }
+    setinputValue("");
+  };
+
   return (
     <>
       <h2>{result}</h2>
-      <form onSubmit={checkResult}>
-        <input
-          ref={inputDOM}
-          type="number"
-          onChange={changeInputValue}
-          value={inputValue}
-        />
-        <button onClick={checkResult}>입력!</button>
+      <form onSubmit={resultCheck}>
+        <input type="number" onChange={inputValueChange} value={inputValue} />
       </form>
+      <p>시도 : {tries.length}</p>
+      <ul>
+        {tries.map((v, i) => {
+          return (
+            <li key={v + i}>
+              <div>{v}</div>
+              <div>{hint}</div>
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 };

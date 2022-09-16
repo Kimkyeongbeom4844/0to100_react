@@ -25,7 +25,7 @@ module.exports = {
   devServer: {
     hot: true,
     devMiddleware: {
-      publicPath: "/dist/",
+      publicPath: "/dist",
     },
     static: {
       directory: path.join(__dirname),
