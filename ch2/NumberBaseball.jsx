@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import Try from "./try.jsx";
 
 const setNum = () => {
   let candidate = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -10,12 +11,12 @@ const setNum = () => {
 };
 
 const NumberBaseball = () => {
-  const [quiz, setQuiz] = useState(setNum);
+  const [quiz, setQuiz] = useState(setNum); //useState에서 제공하는 lazyinit -> setNum함수가 return값을 반환할 때까지 await시킴
   const [result, setResult] = useState("");
   const [inputValue, setinputValue] = useState("");
   const [tries, setTries] = useState([]);
-  const [hint, setHint] = useState(0);
-  const [count, setCount] = useState(0);
+  const [hint, setHint] = useState([]);
+  const focusInput = useRef(null);
 
   console.log(quiz);
   const inputValueChange = (e) => {
@@ -27,22 +28,44 @@ const NumberBaseball = () => {
   const resultCheck = (e) => {
     e.preventDefault();
     if (inputValue.length === 4) {
-      setCount((v) => v + 1);
-      setTries([...tries, inputValue]);
+      setTries((v) => [...v, inputValue]);
       if (inputValue === quiz.join("")) {
-        setResult("홈런");
+        setResult("정답! 홈런입니다");
+        setTries([]);
+        setHint([]);
         setQuiz(setNum);
       } else {
         setResult("");
-        for (let i = 0; i < quiz.length; i++) {}
+        let strike = 0;
+        let ball = 0;
+        for (let i = 0; i < quiz.length; i++) {
+          if (inputValue[i] === quiz[i]) {
+            strike++;
+          } else if (quiz.includes(inputValue[i])) {
+            ball++;
+            continue;
+          }
+          f;
+        }
+        setHint((v) => [...v, `${strike}스트라이크${ball}볼`]);
       }
-      console.log(count);
     } else {
       setResult("");
       alert("숫자를 4개 입력하세요");
     }
     setinputValue("");
   };
+
+  if (tries.length === 10) {
+    alert(
+      `실패! 10번이상 틀려서 게임을 새로 시작합니다. 정답은 ${quiz.join(
+        ``
+      )}이었습니다)`
+    );
+    setTries([]);
+    setHint([]);
+    setQuiz(setNum);
+  }
 
   return (
     <>
@@ -52,14 +75,9 @@ const NumberBaseball = () => {
       </form>
       <p>시도 : {tries.length}</p>
       <ul>
-        {tries.map((v, i) => {
-          return (
-            <li key={v + i}>
-              <div>{v}</div>
-              <div>{hint}</div>
-            </li>
-          );
-        })}
+        {tries.map((v, i) => (
+          <Try key={v + i} value={v} hint={hint[i]} />
+        ))}
       </ul>
     </>
   );

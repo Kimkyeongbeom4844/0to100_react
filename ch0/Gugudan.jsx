@@ -1,5 +1,5 @@
-const React = require("react");
-const { useState, useRef } = require("react");
+import React from "react";
+import { useState, useRef } from "react";
 
 const Gugudan = () => {
   const [result, checkResult] = useState("");
@@ -44,4 +44,4 @@ const Gugudan = () => {
   );
 };
 
-module.exports = Gugudan;
+export default Gugudan;
