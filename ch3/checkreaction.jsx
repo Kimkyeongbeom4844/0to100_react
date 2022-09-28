@@ -30,9 +30,8 @@ const Checkreaction = () => {
     if (bgColor === "#AAEB29") {
       setBgColor("#00E5FF");
       setWord("클릭해서 시작하세요");
-      console.log(`${new Date() - timer.current} 밀리초`);
+      console.log(`반응속도 ${new Date() - timer.current} ms`);
     } else if (bgColor === "#00E5FF") {
-      console.log(timeRef.current);
       setBgColor("#FF1800");
       wordRef.current.style.color = "white";
       setWord("초록색이 되면 클릭하세요");
