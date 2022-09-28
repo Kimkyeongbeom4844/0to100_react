@@ -21,7 +21,8 @@ const Square = styled.div`
 const Checkreaction = () => {
   const [bgColor, setBgColor] = useState("#00E5FF");
   const [word, setWord] = useState("클릭해서 시작하세요");
-  const [timer, setTimer] = useState();
+  // const [timer, setTimer] = useState();
+  const timer = useRef(null);
   const wordRef = useRef(null);
   const timeRef = useRef(null);
 
@@ -29,13 +30,14 @@ const Checkreaction = () => {
     if (bgColor === "#AAEB29") {
       setBgColor("#00E5FF");
       setWord("클릭해서 시작하세요");
-      console.log(`${new Date() - timer} 밀리초`);
+      console.log(`${new Date() - timer.current} 밀리초`);
     } else if (bgColor === "#00E5FF") {
+      console.log(timeRef.current);
       setBgColor("#FF1800");
       wordRef.current.style.color = "white";
       setWord("초록색이 되면 클릭하세요");
       timeRef.current = setTimeout(() => {
-        setTimer(new Date());
+        timer.current = new Date();
         setBgColor("#AAEB29");
         wordRef.current.style.color = "black";
         setWord("클릭하세요");
