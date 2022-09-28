@@ -45,7 +45,6 @@ const NumberBaseball = () => {
             ball++;
             continue;
           }
-          f;
         }
         setHint((v) => [...v, `${strike}스트라이크${ball}볼`]);
       }
