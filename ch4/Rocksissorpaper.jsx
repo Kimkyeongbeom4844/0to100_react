@@ -19,7 +19,8 @@ const ButtonMarginX = styled.button`
 const Rocksissorpaper = () => {
   const imgRef = useRef(null);
   const timer = useRef(null);
-  const [tries, setTries] = useState([]);
+  const [result, setResult] = useState();
+  const [score, setScore] = useState(0);
 
   const startTimer = () => {
     timer.current = setInterval(() => {
@@ -39,7 +40,6 @@ const Rocksissorpaper = () => {
 
   const stopTimer = (e) => {
     clearInterval(timer.current);
-    // console.log(imgRef.current.style.left, e.target.value);
     let result;
     switch (e.target.value) {
       case "-136px":
@@ -70,10 +70,20 @@ const Rocksissorpaper = () => {
         }
         break;
     }
-    setTries([...tries, result]);
+    switch (result) {
+      case "이겼습니다":
+        setScore((v) => v + 1);
+        break;
+      case "졌습니다":
+        setScore((v) => v - 1);
+        break;
+      default:
+        break;
+    }
+    setResult(result);
     setTimeout(() => {
       startTimer();
-    }, 2000);
+    }, 1000);
   };
 
   return (
@@ -96,15 +106,8 @@ const Rocksissorpaper = () => {
       <ButtonMarginX onClick={stopTimer} value="-284px">
         보
       </ButtonMarginX>
-      <ul>
-        {tries.map((v, i) => {
-          return (
-            <li key={v + i}>
-              시도 : {i + 1}회 , 결과 : {v}
-            </li>
-          );
-        })}
-      </ul>
+      <h3>{result}</h3>
+      <h3>현재 {score}점</h3>
     </>
   );
 };
