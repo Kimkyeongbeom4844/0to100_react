@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled, { css } from "styled-components";
 
 const RocksissorpaperWrap = styled.div`
@@ -21,6 +21,16 @@ const Rocksissorpaper = () => {
   const timer = useRef(null);
   const [result, setResult] = useState();
   const [score, setScore] = useState(0);
+
+  useEffect(() => {
+    // componentDidMount -> 마운트 직후 실행[], componentDidUpdate -> 업데이트 직후 실행[state,props]
+    console.log("마운트 or 업데이트 직후 실행");
+    startTimer();
+    return () => {
+      // componentWillUnmount -> 언마운트 직전 실행
+      console.log("언마운트 직전 실행");
+    };
+  }, []);
 
   const startTimer = () => {
     timer.current = setInterval(() => {
@@ -91,7 +101,6 @@ const Rocksissorpaper = () => {
       <RocksissorpaperWrap>
         <RocksissorpaperImg
           ref={imgRef}
-          onLoad={startTimer}
           style={{ left: "-136px" }}
           src="http://en.pimg.jp/023/182/267/1/23182267.jpg"
           alt="가위바위보"
