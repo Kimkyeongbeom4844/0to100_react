@@ -9,7 +9,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.jsx$/,
         loader: "babel-loader",
         options: {
           presets: ["@babel/preset-env", "@babel/preset-react"],
@@ -17,7 +17,7 @@ module.exports = {
         },
       },
       {
-        test: /\.css?$/,
+        test: /\.css$/,
         use: ["style-loader", "css-loader"],
       },
     ],

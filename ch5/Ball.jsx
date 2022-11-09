@@ -6,7 +6,7 @@ const Ball = memo((props) => {
     <>
       <Button
         variant={props.color}
-        className="rounded-circle m-2 border-dark"
+        className="rounded-circle m-2 border-dark fw-bold"
         size="lg"
       >
         {props.number}

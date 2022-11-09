@@ -11,41 +11,30 @@ const colorList = [
   "dark",
 ];
 
+const ballOptions = () => {
+  return {
+    color: colorList[parseInt(Math.random() * 6.9999)],
+    number: parseInt(Math.random() * 100),
+  };
+};
+
 const MyLotto = () => {
-  const [result, setResult] = useState([
-    {
-      color: colorList[parseInt(Math.random() * 6.9)],
-      number: parseInt(Math.random() * 100),
-    },
-  ]);
+  const [result, setResult] = useState([]);
   const [bonus, setBonus] = useState([]);
   const counterRef = useRef(null);
 
   useEffect(() => {
     counterRef.current = setInterval(() => {
       if (result.length < 6) {
-        setResult((v) => [
-          ...v,
-          {
-            color: colorList[parseInt(Math.random() * 6)],
-            number: parseInt(Math.random() * 100),
-          },
-        ]);
+        setResult((v) => [...v, ballOptions()]);
       } else {
         clearInterval(counterRef.current);
-        setBonus((v) => [
-          ...v,
-          {
-            color: colorList[parseInt(Math.random() * 6)],
-            number: parseInt(Math.random() * 100),
-          },
-        ]);
+        setBonus((v) => [...v, ballOptions()]);
       }
     }, 1000);
 
     return () => {
       clearInterval(counterRef.current);
-      console.log("clear");
     };
   }, [result]);
 
