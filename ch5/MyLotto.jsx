@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import Ball from "./Ball.jsx";
 
 const colorList = [
@@ -19,6 +19,7 @@ const ballOptions = () => {
 };
 
 const MyLotto = () => {
+  const chooseBall = useCallback(ballOptions, []);
   const [result, setResult] = useState([]);
   const [bonus, setBonus] = useState([]);
   const counterRef = useRef(null);
@@ -26,10 +27,10 @@ const MyLotto = () => {
   useEffect(() => {
     counterRef.current = setInterval(() => {
       if (result.length < 6) {
-        setResult((v) => [...v, ballOptions()]);
+        setResult((v) => [...v, chooseBall()]);
       } else {
         clearInterval(counterRef.current);
-        setBonus((v) => [...v, ballOptions()]);
+        setBonus((v) => [...v, chooseBall()]);
       }
     }, 1000);
 
@@ -40,7 +41,6 @@ const MyLotto = () => {
 
   return (
     <>
-      <h3>당첨 숫자</h3>
       {result.map((v, i) => (
         <Ball key={v.color + v.number + i} color={v.color} number={v.number} />
       ))}
