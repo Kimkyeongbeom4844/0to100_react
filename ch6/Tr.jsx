@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import Td from "./Td.jsx";
 
 const Tr = memo(({ rowData, rowIndex, dispatch }) => {
+  console.log("Tr 실행");
   return (
     <>
       <tr>

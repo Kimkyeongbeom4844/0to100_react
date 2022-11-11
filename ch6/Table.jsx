@@ -3,6 +3,7 @@ import Tr from "./Tr.jsx";
 import Table from "react-bootstrap/Table";
 
 const Tables = memo(({ onClick, tableData, dispatch }) => {
+  console.log("table실행");
   return (
     <>
       <Table striped="columns" bordered onClick={onClick}>

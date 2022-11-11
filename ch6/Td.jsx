@@ -2,6 +2,7 @@ import React, { useCallback, memo } from "react";
 import { CLICK_CELL, CHANGE_TURN, SET_WINNER } from "./TicTacTo.jsx";
 
 const Td = memo(({ rowIndex, cellIndex, dispatch, cellData }) => {
+  console.log("td실행");
   const onClickTd = useCallback(() => {
     console.log(rowIndex, cellIndex);
     dispatch({ type: CLICK_CELL, row: rowIndex, cell: cellIndex });
