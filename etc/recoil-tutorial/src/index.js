@@ -8,7 +8,8 @@ export const textState = atom({
   default: "",
 });
 
-//selector는 비동기 작업할 때 사용한다 보면됨 get -> useRecoilValue, set -> useSetRecoilState
+// selector -> atom의 파편, atom이 못하는 비동기함수를 함, atom을 항상 구독함
+// get -> useRecoilValue(charCountState) or useRecoilState(charCountState)의 getter, set -> useSetRecoilState(charCountState) or useRecoilState(charCountState)의 setter
 export const charCountState = selector({
   key: "charCountState",
   get: ({ get }) => {

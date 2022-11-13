@@ -1,10 +1,10 @@
 import React from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { charCountState } from "./index";
 
 const CharacterCount = () => {
-  const count = useRecoilValue(charCountState);
-  return <>Character Count : {count}</>;
+  const [count, setCount] = useRecoilState(charCountState);
+  return <>Character Count : {count}</>; //charCOuntState는 selector이고, getter를 사용하여 get함수 실행
 };
 
 export default CharacterCount;
